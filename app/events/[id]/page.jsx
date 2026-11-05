@@ -1,12 +1,53 @@
+import { Suspense } from "react";
 import { notFound } from "next/navigation";
 import JoinButton from "@/components/events/JoinButton";
-export default async function EventDetailsPage({ params }) {
+
+function DetailsFallback() {
+ return (
+ <article className="mx-auto max-w-3xl px-4 py-10" aria-label="Loading event">
+  <div className="skeleton h-72 w-full rounded-xl" />
+  <div className="skeleton mt-6 h-8 w-40" />
+  <div className="skeleton mt-4 h-10 w-3/4" />
+  <div className="skeleton mt-8 h-28 w-full" />
+ </article>
+ );
+}
+
+async function EventDetails({ params }) {
  const { id } = await params;
- const res = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/events/${id}`, {
- cache: "no-store",
- });
- if (!res.ok) notFound();
- const event = await res.json();
+ let res;
+ try {
+ res = await fetch(
+  new URL(`/events/${encodeURIComponent(id)}`, process.env.NEXT_PUBLIC_API_URL),
+  { cache: "no-store" },
+ );
+ } catch (error) {
+ return (
+  <p role="alert" className="mx-auto max-w-3xl px-4 py-10 text-error">
+   Event details could not be loaded: {error.message}
+  </p>
+ );
+ }
+ if (res.status === 404) notFound();
+ if (!res.ok) {
+ return (
+  <p role="alert" className="mx-auto max-w-3xl px-4 py-10 text-error">
+   Event details could not be loaded (request failed with status {res.status}).
+  </p>
+ );
+ }
+
+ let event;
+ try {
+ event = await res.json();
+ } catch {
+ return (
+  <p role="alert" className="mx-auto max-w-3xl px-4 py-10 text-error">
+   Event details could not be loaded: the API returned invalid data.
+  </p>
+ );
+ }
+
  return (
  <article className="mx-auto max-w-3xl px-4 py-10">
  <img src={event.thumbnail} alt={event.title} className="h-72 w-full rounded-xl object-cover" />
@@ -21,5 +62,13 @@ export default async function EventDetailsPage({ params }) {
  <JoinButton eventId={event._id} />
  </div>
  </article>
+ );
+}
+
+export default function EventDetailsPage({ params }) {
+ return (
+  <Suspense fallback={<DetailsFallback />}>
+   <EventDetails params={params} />
+  </Suspense>
  );
 }

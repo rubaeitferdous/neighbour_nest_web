@@ -4,12 +4,12 @@ export default async function RecentEvents() {
  let events;
  try {
   events = await getPublic("/events?limit=6");
- } catch {
+ } catch (error) {
   return (
    <section className="mx-auto max-w-6xl px-4 py-14" aria-live="polite">
     <h2 className="mb-4 text-3xl font-bold">Recent Upcoming Events</h2>
     <p role="alert" className="text-error">
-     Upcoming events could not be loaded. Please try again later.
+     Upcoming events could not be loaded: {error.message}
     </p>
    </section>
   );
