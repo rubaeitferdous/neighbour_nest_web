@@ -9,6 +9,20 @@ const field = "input input-bordered w-full";
 export default function RegisterPage() {
  const router = useRouter();
  const [loading, setLoading] = useState(false);
+ async function googleSignup() {
+ setLoading(true);
+ try {
+ const { error } = await authClient.signIn.social({
+  provider: "google",
+  callbackURL: "/",
+ });
+ if (error) toast.error(error.message || "Google sign-up failed");
+ } catch (error) {
+ toast.error(error.message || "Google sign-up failed");
+ } finally {
+ setLoading(false);
+ }
+ }
  async function handleSubmit(e) {
  e.preventDefault();
  const f = new FormData(e.currentTarget);
@@ -47,6 +61,15 @@ export default function RegisterPage() {
  {loading ? "Creating..." : "Register"}
  </button>
  </form>
+ <div className="divider">OR</div>
+ <button
+  type="button"
+  onClick={googleSignup}
+  disabled={loading}
+  className="btn btn-outline w-full"
+ >
+ {loading ? "Redirecting..." : "Continue with Google"}
+ </button>
  <p className="mt-4 text-sm">
  Already have an account? <Link href="/login" className="link link-primary">Login</Link>
  </p>
