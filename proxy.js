@@ -1,7 +1,7 @@
 import { NextResponse } from "next/server";
 import { getSessionCookie } from "better-auth/cookies";
 const PRIVATE = ["/create-event", "/manage-events", "/joined-events", "/profile"];
-export function middleware(request) {
+export function proxy(request) {
     const { pathname } = request.nextUrl;
     const isPrivate = PRIVATE.some((route) => pathname.startsWith(route));
     // Only the cookie is checked, so a logged-in user reloading a private

@@ -9,9 +9,17 @@ export default function Navbar() {
  const { data: session, isPending } = authClient.useSession();
  const user = session?.user;
  async function handleLogout() {
- await authClient.signOut();
- toast.success("You have been logged out");
- router.push("/");
+ try {
+  const { error } = await authClient.signOut();
+  if (error) {
+   toast.error(error.message || "Could not log out");
+   return;
+  }
+  toast.success("You have been logged out");
+  router.push("/");
+ } catch (error) {
+  toast.error(error.message || "Could not log out");
+ }
  }
  return (
  <header className="navbar sticky top-0 z-50 bg-base-100 shadow-sm px-4">

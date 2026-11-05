@@ -13,17 +13,33 @@ function LoginForm() {
  e.preventDefault();
  const f = new FormData(e.currentTarget);
  setLoading(true);
+ try {
  const { error } = await authClient.signIn.email({
- email: f.get("email"),
- password: f.get("password"),
+  email: f.get("email"),
+  password: f.get("password"),
  });
- setLoading(false);
- if (error) return toast.error(error.message || "Wrong email or password");
+ if (error) {
+  toast.error(error.message || "Wrong email or password");
+  return;
+ }
  toast.success("Welcome back!");
  router.push(redirect);
+ } catch (error) {
+ toast.error(error.message || "Could not sign in");
+ } finally {
+ setLoading(false);
+ }
  }
  async function googleLogin() {
- await authClient.signIn.social({ provider: "google", callbackURL: redirect });
+ try {
+ const { error } = await authClient.signIn.social({
+  provider: "google",
+  callbackURL: redirect,
+ });
+ if (error) toast.error(error.message || "Google sign-in failed");
+ } catch (error) {
+ toast.error(error.message || "Google sign-in failed");
+ }
  }
  return (
  <div className="mx-auto max-w-md px-4 py-12">
@@ -35,7 +51,7 @@ function LoginForm() {
  {loading ? "Signing in..." : "Login"}
  </button>
  </form>
- <button onClick={googleLogin} className="btn btn-outline mt-3 w-full">
+ <button onClick={googleLogin} disabled={loading} className="btn btn-outline mt-3 w-full">
  Continue with Google
  </button>
  <p className="mt-4 text-sm">

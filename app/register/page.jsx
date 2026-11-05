@@ -19,13 +19,21 @@ export default function RegisterPage() {
  const problem = validatePassword(password);
  if (problem) return toast.error(problem);
  setLoading(true);
+ try {
  const { error } = await authClient.signUp.email({
- name, email, password, image: photoURL,
+  name, email, password, image: photoURL,
  });
- setLoading(false);
- if (error) return toast.error(error.message || "Registration failed");
+ if (error) {
+  toast.error(error.message || "Registration failed");
+  return;
+ }
  toast.success("Account created. Welcome to the community!");
  router.push("/");
+ } catch (error) {
+ toast.error(error.message || "Registration failed");
+ } finally {
+ setLoading(false);
+ }
  }
  return (
  <div className="mx-auto max-w-md px-4 py-12">

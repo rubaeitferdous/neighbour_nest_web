@@ -1,7 +1,20 @@
 import EventCard from "@/components/events/EventCard";
 import { getPublic } from "@/lib/api";
 export default async function UpcomingEventsPage() {
- const events = await getPublic("/events");
+ let events;
+ try {
+  events = await getPublic("/events");
+ } catch {
+  return (
+   <section className="mx-auto max-w-6xl px-4 py-10">
+    <h1 className="mb-8 text-3xl font-bold">Upcoming Events</h1>
+    <p role="alert" className="text-error">
+     Events could not be loaded. Please try again later.
+    </p>
+   </section>
+  );
+ }
+
  return (
  <section className="mx-auto max-w-6xl px-4 py-10">
  <h1 className="mb-8 text-3xl font-bold">Upcoming Events</h1>
