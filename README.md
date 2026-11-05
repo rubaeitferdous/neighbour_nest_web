@@ -14,6 +14,8 @@ pnpm dev
 bun dev
 ```
 
+Copy `.env.example` to `.env.local` and fill in the required values. Configure the same variables in your deployment platform; `.env.local` is not committed. `MONGODB_URI`, `BETTER_AUTH_SECRET`, and `BETTER_AUTH_URL` are required for authentication. Set both Google OAuth variables to enable Google sign-in.
+
 Open the local URL printed by `npm run dev`. Configure the app and API URLs in `.env.local`.
 
 You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
