@@ -142,7 +142,7 @@ cp .env.example .env.local
 | --- | :---: | --- |
 | `MONGODB_URI` | ✅ | MongoDB connection string used by Better Auth |
 | `BETTER_AUTH_SECRET` | ✅ | Long random secret used to sign sessions/tokens |
-| `BETTER_AUTH_URL` | ✅ | Base URL of the app (e.g. `http://localhost:3000`) |
+| `BETTER_AUTH_URL` | ✅ | App origin (e.g. `http://localhost:3000`); use the deployed client origin without a trailing slash |
 | `GOOGLE_CLIENT_ID` | ➖ | Google OAuth client ID (set both Google variables to enable Google sign-in) |
 | `GOOGLE_CLIENT_SECRET` | ➖ | Google OAuth client secret |
 | `NEXT_PUBLIC_API_URL` | ✅ | Base URL of the NeighbourNest Express server (e.g. `http://localhost:5000`) |
@@ -208,7 +208,7 @@ The client is deployed on **Vercel**.
 1. Push the repository to GitHub.
 2. Import it in [Vercel](https://vercel.com/new) — the Next.js preset is detected automatically.
 3. Add every variable from `.env.example` under **Project → Settings → Environment Variables**.
-4. Set `BETTER_AUTH_URL` to your production domain (e.g. `https://neighbournest-eight.vercel.app`) and set `NEXT_PUBLIC_API_URL` to the deployed NeighbourNest Express server's base URL (an `https://` URL, not `localhost`).
+4. Set `BETTER_AUTH_URL` to your production client origin (e.g. `https://neighbournest-eight.vercel.app`, without a trailing slash) and set `NEXT_PUBLIC_API_URL` to the deployed NeighbourNest Express server's base URL (an `https://` URL, not `localhost`).
 5. Add the production callback URL to your Google OAuth client:
    `https://<your-domain>/api/auth/callback/google`
 6. Redeploy after setting or changing environment variables. `NEXT_PUBLIC_API_URL` is embedded during the build.
