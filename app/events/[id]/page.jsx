@@ -1,6 +1,7 @@
 import { Suspense } from "react";
 import { notFound } from "next/navigation";
 import JoinButton from "@/components/events/JoinButton";
+import { getPublic } from "@/lib/api";
 
 function DetailsFallback() {
  return (
@@ -15,35 +16,14 @@ function DetailsFallback() {
 
 async function EventDetails({ params }) {
  const { id } = await params;
- let res;
+ let event;
  try {
- res = await fetch(
-  new URL(`/events/${encodeURIComponent(id)}`, process.env.NEXT_PUBLIC_API_URL),
-  { cache: "no-store" },
- );
+ event = await getPublic(`/events/${encodeURIComponent(id)}`);
  } catch (error) {
+ if (error.status === 404) notFound();
  return (
   <p role="alert" className="mx-auto max-w-3xl px-4 py-10 text-error">
    Event details could not be loaded: {error.message}
-  </p>
- );
- }
- if (res.status === 404) notFound();
- if (!res.ok) {
- return (
-  <p role="alert" className="mx-auto max-w-3xl px-4 py-10 text-error">
-   Event details could not be loaded (request failed with status {res.status}).
-  </p>
- );
- }
-
- let event;
- try {
- event = await res.json();
- } catch {
- return (
-  <p role="alert" className="mx-auto max-w-3xl px-4 py-10 text-error">
-   Event details could not be loaded: the API returned invalid data.
   </p>
  );
  }

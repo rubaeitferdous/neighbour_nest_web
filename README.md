@@ -208,10 +208,10 @@ The client is deployed on **Vercel**.
 1. Push the repository to GitHub.
 2. Import it in [Vercel](https://vercel.com/new) — the Next.js preset is detected automatically.
 3. Add every variable from `.env.example` under **Project → Settings → Environment Variables**.
-4. Set `BETTER_AUTH_URL` to your production domain (e.g. `https://neighbournest-eight.vercel.app`).
+4. Set `BETTER_AUTH_URL` to your production domain (e.g. `https://neighbournest-eight.vercel.app`) and set `NEXT_PUBLIC_API_URL` to the deployed NeighbourNest Express server's base URL (an `https://` URL, not `localhost`).
 5. Add the production callback URL to your Google OAuth client:
    `https://<your-domain>/api/auth/callback/google`
-6. Redeploy.
+6. Redeploy after setting or changing environment variables. `NEXT_PUBLIC_API_URL` is embedded during the build.
 
 ---
 
@@ -220,6 +220,7 @@ The client is deployed on **Vercel**.
 The web app consumes the REST API from the [NeighbourNest server](https://github.com/rubaeitferdous/NeighbourNest_server):
 
 - Point `NEXT_PUBLIC_API_URL` at the server's base URL.
+- In Vercel, use the public deployed server URL; `localhost` points to the Vercel instance itself, not your development computer.
 - Make sure the server's CORS settings allow the client origin (local and production).
 - Authenticated requests send the user's JWT in the `Authorization: Bearer <token>` header.
 
