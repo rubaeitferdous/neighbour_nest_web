@@ -72,14 +72,12 @@ export default function Features() {
     <section className="bg-base-100 px-6 py-16 sm:py-20 lg:px-8">
       <div className="mx-auto max-w-7xl">
         <div className="mx-auto max-w-2xl text-center">
-          <span className="badge badge-primary badge-outline">
-            A community that cares
-          </span>
-          <h2 className="mt-4 text-3xl font-bold tracking-tight text-base-content sm:text-4xl">
+          <span className="section-kicker">How it works</span>
+          <h2 className="mt-3 font-display text-3xl font-semibold tracking-tight text-base-content sm:text-4xl">
             Good things grow when we do them together
           </h2>
           <p className="mt-4 text-base leading-7 text-base-content/70">
-            HelpingHands BD makes it easier to find local causes, bring
+            NeighbourNest makes it easier to find local causes, bring
             neighbors together, and keep every act of service moving.
           </p>
         </div>
@@ -88,7 +86,7 @@ export default function Features() {
           {features.map((feature) => (
             <article
               key={feature.number}
-              className="card h-full border border-base-200 bg-base-100 shadow-sm transition-shadow hover:shadow-lg"
+              className="surface-card h-full transition-all duration-300 hover:-translate-y-1 hover:shadow-xl"
             >
               <div className="card-body p-6 sm:p-7">
                 <div className="flex items-start justify-between">
@@ -108,7 +106,7 @@ export default function Features() {
                       {feature.icon}
                     </svg>
                   </span>
-                  <span className="text-sm font-semibold tracking-widest text-base-content/35">
+                  <span className="text-xs font-bold tracking-[0.15em] text-base-content/35">
                     {feature.number}
                   </span>
                 </div>

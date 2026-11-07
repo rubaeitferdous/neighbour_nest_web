@@ -1,129 +1,89 @@
+import Image from "next/image";
 import Link from "next/link";
 
 export default function Banner() {
   return (
-    <section className="relative isolate overflow-hidden bg-base-200">
+    <section className="relative isolate overflow-hidden bg-cream">
       <div
         aria-hidden="true"
-        className="absolute -right-24 -top-32 -z-10 h-96 w-96 rounded-full bg-primary/10 blur-3xl"
+        className="pointer-events-none absolute -left-40 top-20 -z-0 h-96 w-96 rounded-full bg-sunlight/10 blur-3xl"
       />
-      <div
-        aria-hidden="true"
-        className="absolute -bottom-40 left-1/4 -z-10 h-80 w-80 rounded-full bg-secondary/10 blur-3xl"
-      />
-
-      <div className="mx-auto grid max-w-7xl items-center gap-12 px-6 py-16 sm:py-20 lg:grid-cols-[1.1fr_0.9fr] lg:px-8 lg:py-24">
-        <div>
-          <div className="badge badge-primary badge-outline gap-2 px-3 py-4 font-medium">
-            <span aria-hidden="true" className="h-2 w-2 rounded-full bg-primary" />
-            Small acts. Stronger communities.
+      <div className="relative mx-auto grid max-w-7xl items-center gap-12 px-5 py-14 sm:px-8 sm:py-20 lg:grid-cols-[1fr_0.95fr] lg:gap-16 lg:px-8 lg:py-24">
+        <div className="relative z-10">
+          <div className="inline-flex items-center gap-2 rounded-full border border-brand/15 bg-base-100 px-3.5 py-2 text-xs font-bold uppercase tracking-[0.12em] text-brand shadow-sm">
+            <span aria-hidden="true" className="h-2 w-2 rounded-full bg-sunlight" />
+            Small acts. Stronger neighborhoods.
           </div>
-
-          <h1 className="mt-6 max-w-2xl text-4xl font-bold leading-tight tracking-tight text-base-content sm:text-5xl lg:text-6xl">
-            Good things happen when{" "}
-            <span className="text-primary">we show up</span> for each other.
-          </h1>
-
-          <p className="mt-6 max-w-xl text-lg leading-8 text-base-content/70">
-            Find local service events, meet neighbors who care, and turn a few
-            hours of your time into a lasting difference across your community.
-          </p>
-
-          <div className="mt-8 flex flex-col gap-3 sm:flex-row">
-            <Link href="/upcoming-events" className="btn btn-primary btn-lg">
-              Explore Upcoming Events
+          <h1 className="mt-7 max-w-2xl font-display text-5xl font-semibold leading-[1.05] tracking-tight text-ink sm:text-6xl lg:text-[4.35rem]">
+            Good grows when we{" "}
+            <span className="relative whitespace-nowrap text-brand">
+              show up.
               <svg
                 aria-hidden="true"
-                viewBox="0 0 24 24"
+                viewBox="0 0 220 14"
                 fill="none"
-                className="h-5 w-5"
+                className="absolute -bottom-2 left-0 w-full text-sunlight"
               >
-                <path
-                  d="M5 12h14m-6-6 6 6-6 6"
-                  stroke="currentColor"
-                  strokeWidth="1.8"
-                  strokeLinecap="round"
-                  strokeLinejoin="round"
-                />
+                <path d="M3 10C55 2 161 2 217 9" stroke="currentColor" strokeWidth="5" strokeLinecap="round" />
+              </svg>
+            </span>
+          </h1>
+          <p className="mt-7 max-w-xl text-lg leading-8 text-ink/70">
+            Meet the neighbors who care. Find a local cause, lend a hand, and
+            make your corner of Bangladesh a little brighter.
+          </p>
+          <div className="mt-9 flex flex-col gap-3 sm:flex-row">
+            <Link href="/upcoming-events" className="btn btn-primary btn-lg">
+              Find your next good thing
+              <svg aria-hidden="true" viewBox="0 0 24 24" fill="none" className="h-5 w-5">
+                <path d="M5 12h14m-6-6 6 6-6 6" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round" />
               </svg>
             </Link>
-            <Link href="/create-event" className="btn btn-outline btn-lg">
-              Organize an Event
+            <Link href="/create-event" className="btn btn-ghost btn-lg border border-ink/15 bg-base-100 hover:border-brand/40 hover:bg-base-100">
+              Bring people together
             </Link>
           </div>
-
-          <p className="mt-5 text-sm text-base-content/60">
-            From neighborhood cleanups to helping families in need.
-          </p>
+          <div className="mt-9 flex items-center gap-3 text-sm text-ink/60">
+            <div className="flex -space-x-2">
+              {["/gallery/neighbors-helping.jpg", "/gallery/community-cleanup.jpg", "/gallery/volunteer-event.jpg"].map((src, index) => (
+                <span key={src} className="relative h-9 w-9 overflow-hidden rounded-full border-2 border-cream bg-base-200">
+                  <Image src={src} alt="" fill sizes="36px" className="object-cover" />
+                  <span className="sr-only">Community volunteer {index + 1}</span>
+                </span>
+              ))}
+            </div>
+            <span><strong className="text-ink">Good people,</strong> doing good nearby.</span>
+          </div>
         </div>
 
-        <div className="relative mx-auto w-full max-w-lg">
-          <div
-            aria-hidden="true"
-            className="absolute -inset-4 rotate-3 rounded-[2rem] bg-primary/10"
-          />
-          <div className="card relative overflow-hidden rounded-[1.5rem] bg-base-100 shadow-xl">
-            <div className="bg-primary px-6 py-5 text-primary-content">
-              <p className="text-sm font-semibold uppercase tracking-[0.18em] opacity-80">
-                Community in action
-              </p>
-              <p className="mt-2 text-2xl font-bold">
-                Every helping hand matters.
-              </p>
+        <div className="relative mx-auto w-full max-w-[34rem] lg:ml-auto">
+          <div aria-hidden="true" className="absolute -right-4 -top-5 h-28 w-28 rounded-full border border-sunlight/50 sm:-right-8 sm:-top-8 sm:h-40 sm:w-40" />
+          <div className="relative aspect-[0.94] overflow-hidden rounded-[2rem] bg-base-200 shadow-[0_30px_75px_rgb(35_51_43/18%)] sm:rounded-[2.5rem]">
+            <Image
+              src="/gallery/neighbors-helping.jpg"
+              alt="Neighbors joining hands to support one another"
+              fill
+              priority
+              sizes="(min-width: 1024px) 44vw, 90vw"
+              className="object-cover"
+            />
+            <div className="absolute inset-0 bg-gradient-to-t from-ink/60 via-transparent to-ink/10" />
+            <div className="absolute inset-x-0 bottom-0 p-6 text-white sm:p-9">
+              <p className="text-xs font-bold uppercase tracking-[0.18em] text-white/75">A little time goes a long way</p>
+              <p className="mt-2 max-w-sm font-display text-3xl leading-tight sm:text-4xl">Your neighborhood is better with you in it.</p>
             </div>
-            <div className="card-body gap-5 p-6 sm:p-8">
-              <div className="flex items-start gap-4">
-                <span className="flex h-12 w-12 shrink-0 items-center justify-center rounded-2xl bg-success/10 text-success">
-                  <svg
-                    aria-hidden="true"
-                    viewBox="0 0 24 24"
-                    fill="none"
-                    className="h-6 w-6"
-                  >
-                    <path
-                      d="M12 21s-7-4.35-7-10a4 4 0 0 1 7-2.65A4 4 0 0 1 19 11c0 5.65-7 10-7 10Z"
-                      stroke="currentColor"
-                      strokeWidth="1.7"
-                      strokeLinecap="round"
-                      strokeLinejoin="round"
-                    />
-                    <path
-                      d="M8.5 12h2l1.2-2.2 1.6 4.4 1.1-2.2h1.1"
-                      stroke="currentColor"
-                      strokeWidth="1.7"
-                      strokeLinecap="round"
-                      strokeLinejoin="round"
-                    />
-                  </svg>
-                </span>
-                <div>
-                  <h2 className="font-bold text-base-content">
-                    Care that reaches close to home
-                  </h2>
-                  <p className="mt-1 text-sm leading-6 text-base-content/65">
-                    Discover meaningful ways to support people and places
-                    around you.
-                  </p>
-                </div>
-              </div>
-
-              <div className="divider my-0" />
-
-              <div className="flex flex-wrap gap-2">
-                <span className="badge badge-outline">Cleanups</span>
-                <span className="badge badge-outline">Tree planting</span>
-                <span className="badge badge-outline">Community care</span>
-              </div>
-
-              <div className="rounded-2xl bg-base-200 p-4">
-                <p className="text-sm font-semibold text-base-content">
-                  Your time can make someone&apos;s day brighter.
-                </p>
-                <p className="mt-1 text-sm text-base-content/65">
-                  Find an event and be part of something good.
-                </p>
-              </div>
-            </div>
+          </div>
+          <div className="absolute -bottom-5 -left-4 flex max-w-[16rem] items-center gap-3 rounded-2xl border border-ink/5 bg-base-100 p-4 shadow-xl sm:-left-10 sm:bottom-8 sm:p-5">
+            <span className="grid h-11 w-11 shrink-0 place-items-center rounded-xl bg-sunlight/20 text-brand">
+              <svg aria-hidden="true" viewBox="0 0 24 24" fill="none" className="h-6 w-6">
+                <path d="M20.8 8.6c0 5-8.8 10.2-8.8 10.2S3.2 13.6 3.2 8.6a4.6 4.6 0 0 1 8.8-1.8 4.6 4.6 0 0 1 8.8 1.8Z" stroke="currentColor" strokeWidth="1.7" strokeLinejoin="round" />
+                <path d="M8.5 11h2l1.2-2.2 1.5 4.1 1.2-1.9h1.7" stroke="currentColor" strokeWidth="1.7" strokeLinecap="round" strokeLinejoin="round" />
+              </svg>
+            </span>
+            <span>
+              <strong className="block text-sm text-ink">Care lives close to home</strong>
+              <span className="mt-1 block text-xs leading-5 text-ink/60">Find a cause that feels like yours.</span>
+            </span>
           </div>
         </div>
       </div>

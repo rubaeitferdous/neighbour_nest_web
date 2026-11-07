@@ -39,14 +39,15 @@ export default function ProfilePage() {
  }
 
  if (isPending) {
-  return <div className="skeleton mx-auto mt-10 h-80 max-w-xl" />;
+  return <div aria-label="Loading profile" className="skeleton mx-auto mt-14 h-80 max-w-xl rounded-2xl" />;
  }
 
  if (!session?.user) {
   return (
-   <section className="mx-auto max-w-xl px-4 py-12">
-    <h1 className="text-3xl font-bold">Your profile</h1>
-    <p className="mt-4">Sign in to view and update your profile.</p>
+   <section className="mx-auto max-w-xl px-5 py-16 sm:px-8">
+    <p className="section-kicker">Your NeighbourNest account</p>
+    <h1 className="mt-2 font-display text-4xl font-semibold">Your profile</h1>
+    <p className="mt-4 text-ink/65">Sign in to view and update your profile.</p>
     <Link href="/login" className="btn btn-primary mt-6">
      Log in
     </Link>
@@ -55,32 +56,34 @@ export default function ProfilePage() {
  }
 
  return (
-  <section className="mx-auto max-w-xl px-4 py-12">
-   <h1 className="text-3xl font-bold">Your profile</h1>
+  <section className="mx-auto max-w-xl px-5 py-14 sm:px-8">
+   <div className="surface-card p-6 sm:p-9">
+   <p className="section-kicker">Your NeighbourNest account</p>
+   <h1 className="mt-2 font-display text-4xl font-semibold">Your profile</h1>
    <p className="mt-2 text-base-content/70">
     Update the name and profile photo shown to your community.
    </p>
 
-   <form onSubmit={handleSubmit} className="mt-8 space-y-5">
+   <form onSubmit={handleSubmit} className="mt-7 space-y-5">
     <label className="form-control w-full">
-     <span className="label-text mb-2 font-medium">Name</span>
+     <span className="mb-2 text-sm font-semibold">Name</span>
      <input
       name="name"
       type="text"
       required
       defaultValue={session.user.name || ""}
-      className="input input-bordered w-full"
+      className="input w-full"
       autoComplete="name"
      />
     </label>
 
     <label className="form-control w-full">
-     <span className="label-text mb-2 font-medium">Profile photo URL</span>
+     <span className="mb-2 text-sm font-semibold">Profile photo URL</span>
      <input
       name="image"
       type="url"
       defaultValue={session.user.image || ""}
-      className="input input-bordered w-full"
+      className="input w-full"
       autoComplete="url"
      />
     </label>
@@ -89,10 +92,11 @@ export default function ProfilePage() {
      Signed in as {session.user.email}
     </p>
 
-    <button disabled={saving} className="btn btn-primary">
+    <button disabled={saving} className="btn btn-primary w-full sm:w-auto">
      {saving ? "Saving..." : "Save profile"}
     </button>
    </form>
+   </div>
   </section>
  );
 }

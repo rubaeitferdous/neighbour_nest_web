@@ -21,22 +21,40 @@ export default function EventForm({ initial = {}, onSubmit, buttonText }) {
  }
  const field = "input input-bordered w-full";
  return (
- <form onSubmit={handleSubmit} className="space-y-4">
- <input name="title" defaultValue={initial.title} placeholder="Event title" className={field} />
- <textarea name="description" defaultValue={initial.description}
- placeholder="Describe the event" className="textarea textarea-bordered h-32 w-full" />
- <select name="eventType" defaultValue={initial.eventType || ""}
- className="select select-bordered w-full">
- <option value="" disabled>Select event type</option>
- {TYPES.map((t) => <option key={t}>{t}</option>)}
- </select>
- <input name="thumbnail" defaultValue={initial.thumbnail}
- placeholder="Thumbnail image URL" className={field} />
- <input name="location" defaultValue={initial.location}
- placeholder="Location (e.g. Mirpur 10, Dhaka)" className={field} />
- <input name="eventDate" type="date" min={tomorrowString()}
- defaultValue={initial.eventDate?.slice(0, 10)} className={field} />
- <button disabled={busy} className="btn btn-primary w-full">
+ <form onSubmit={handleSubmit} className="space-y-5">
+ <label className="block space-y-2">
+  <span className="text-sm font-semibold">Event title</span>
+  <input name="title" defaultValue={initial.title} placeholder="e.g. Gulshan community garden day" className={field} />
+ </label>
+ <label className="block space-y-2">
+  <span className="text-sm font-semibold">Description</span>
+  <textarea name="description" defaultValue={initial.description}
+  placeholder="Tell your neighbors what the event is about" className="textarea textarea-bordered min-h-32 w-full" />
+ </label>
+ <label className="block space-y-2">
+  <span className="text-sm font-semibold">Event type</span>
+  <select name="eventType" defaultValue={initial.eventType || ""}
+  className="select select-bordered w-full">
+  <option value="" disabled>Select event type</option>
+  {TYPES.map((t) => <option key={t}>{t}</option>)}
+  </select>
+ </label>
+ <label className="block space-y-2">
+  <span className="text-sm font-semibold">Cover image URL</span>
+  <input name="thumbnail" defaultValue={initial.thumbnail}
+  placeholder="https://example.com/image.jpg" className={field} />
+ </label>
+ <label className="block space-y-2">
+  <span className="text-sm font-semibold">Location</span>
+  <input name="location" defaultValue={initial.location}
+  placeholder="e.g. Mirpur 10, Dhaka" className={field} />
+ </label>
+ <label className="block space-y-2">
+  <span className="text-sm font-semibold">Event date</span>
+  <input name="eventDate" type="date" min={tomorrowString()}
+  defaultValue={initial.eventDate?.slice(0, 10)} className={field} />
+ </label>
+ <button disabled={busy} className="btn btn-primary mt-2 w-full">
  {busy ? "Please wait..." : buttonText}
  </button>
  </form>

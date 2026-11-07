@@ -2,25 +2,25 @@ export default function Newsletter() {
   return (
     <section className="bg-base-100 px-6 py-16 sm:py-20 lg:px-8">
       <div className="mx-auto max-w-7xl">
-        <div className="relative isolate overflow-hidden rounded-[2rem] bg-primary px-6 py-12 text-primary-content shadow-xl sm:px-10 sm:py-14 lg:px-16">
+        <div className="relative isolate overflow-hidden rounded-[2rem] bg-brand px-6 py-12 text-white shadow-xl sm:px-10 sm:py-14 lg:px-16">
           <div
             aria-hidden="true"
-            className="absolute -right-20 -top-32 -z-10 h-80 w-80 rounded-full border-[40px] border-primary-content/10"
+            className="absolute -right-20 -top-32 -z-10 h-80 w-80 rounded-full border-[40px] border-white/10"
           />
           <div
             aria-hidden="true"
-            className="absolute -bottom-40 right-1/4 -z-10 h-80 w-80 rounded-full bg-primary-content/10 blur-3xl"
+            className="absolute -bottom-40 right-1/4 -z-10 h-80 w-80 rounded-full bg-white/10 blur-3xl"
           />
 
           <div className="grid items-center gap-10 lg:grid-cols-[1fr_0.9fr]">
             <div className="max-w-xl">
-              <span className="badge border-primary-content/30 bg-primary-content/10 text-primary-content">
+              <span className="rounded-full border border-white/20 bg-white/10 px-3 py-1 text-xs font-bold uppercase tracking-[0.14em] text-white">
                 Stay in the loop
               </span>
-              <h2 className="mt-5 text-3xl font-bold tracking-tight sm:text-4xl">
+              <h2 className="mt-5 font-display text-3xl font-semibold tracking-tight sm:text-4xl">
                 A little good news for your inbox.
               </h2>
-              <p className="mt-4 text-base leading-7 text-primary-content/80">
+              <p className="mt-4 text-base leading-7 text-white/75">
                 Keep an eye out for community stories, upcoming service
                 opportunities, and simple ways to make a difference nearby.
               </p>
@@ -28,7 +28,7 @@ export default function Newsletter() {
 
             <div
               aria-label="Newsletter sign-up preview"
-              className="rounded-2xl border border-primary-content/15 bg-primary-content/10 p-4 sm:p-5"
+              className="rounded-2xl border border-white/15 bg-white/10 p-4 sm:p-5"
             >
               <label
                 htmlFor="newsletter-email"

@@ -28,7 +28,7 @@ export default function JoinButton({ eventId }) {
  }
  }
  return (
- <button onClick={handleJoin} disabled={busy || joined} className="btn btn-primary btn-lg">
+ <button onClick={handleJoin} disabled={busy || joined} className="btn btn-primary btn-lg shrink-0">
  {joined ? "Joined" : busy ? "Joining..." : "Join Event"}
  </button>
  );

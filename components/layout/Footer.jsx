@@ -1,16 +1,15 @@
 import Link from "next/link";
+import Brand from "./Brand";
 
 const currentYear = new Date().getFullYear();
 
 export default function Footer() {
   return (
     <footer className="bg-neutral text-neutral-content">
-      <div className="mx-auto grid max-w-7xl gap-10 px-6 py-12 sm:grid-cols-2 lg:grid-cols-4 lg:px-8">
-        <div className="space-y-4 sm:col-span-2">
-          <Link href="/" className="inline-block text-2xl font-bold text-primary">
-            HelpingHands BD
-          </Link>
-          <p className="max-w-md text-sm leading-6 opacity-80">
+      <div className="mx-auto grid max-w-7xl gap-10 px-6 py-14 sm:grid-cols-2 lg:grid-cols-[1.4fr_0.7fr_0.9fr] lg:px-8">
+        <div className="space-y-5">
+          <Brand inverse />
+          <p className="max-w-md text-sm leading-7 text-white/70">
             Neighbors coming together to make a difference. Discover local
             community events, lend a hand, and help build a kinder Bangladesh.
           </p>
@@ -19,7 +18,7 @@ export default function Footer() {
             target="_blank"
             rel="noreferrer"
             aria-label="Visit X"
-            className="inline-flex h-10 w-10 items-center justify-center rounded-full border border-neutral-content/20 transition-colors hover:border-primary hover:text-primary"
+            className="inline-flex h-10 w-10 items-center justify-center rounded-full border border-white/20 text-white/75 transition-colors hover:border-sunlight hover:text-sunlight"
           >
             <svg
               aria-hidden="true"
@@ -32,18 +31,18 @@ export default function Footer() {
         </div>
 
         <nav aria-label="Footer navigation">
-          <h2 className="mb-4 text-sm font-semibold uppercase tracking-wider">
+          <h2 className="mb-4 text-xs font-bold uppercase tracking-[0.16em] text-white/50">
             Explore
           </h2>
-          <ul className="space-y-3 text-sm opacity-80">
+          <ul className="space-y-3 text-sm text-white/75">
             <li>
-              <Link className="transition-colors hover:text-primary" href="/">
+              <Link className="transition-colors hover:text-sunlight" href="/">
                 Home
               </Link>
             </li>
             <li>
               <Link
-                className="transition-colors hover:text-primary"
+                className="transition-colors hover:text-sunlight"
                 href="/upcoming-events"
               >
                 Upcoming Events
@@ -51,8 +50,8 @@ export default function Footer() {
             </li>
             <li>
               <Link
-                className="transition-colors hover:text-primary"
-                href="/login"
+                className="transition-colors hover:text-sunlight"
+                href="/register"
               >
                 Join the Community
               </Link>
@@ -61,14 +60,14 @@ export default function Footer() {
         </nav>
 
         <div>
-          <h2 className="mb-4 text-sm font-semibold uppercase tracking-wider">
+          <h2 className="mb-4 text-xs font-bold uppercase tracking-[0.16em] text-white/50">
             Get involved
           </h2>
-          <p className="text-sm leading-6 opacity-80">
+          <p className="text-sm leading-7 text-white/70">
             Find an event near you and take part in making a positive local
             impact.
           </p>
-          <p className="mt-3 text-sm font-medium">Dhaka, Bangladesh</p>
+          <p className="mt-3 text-sm font-semibold text-white/90">Dhaka, Bangladesh</p>
           <Link
             href="/upcoming-events"
             className="btn btn-primary btn-sm mt-4"
@@ -79,9 +78,9 @@ export default function Footer() {
       </div>
 
       <div className="border-t border-neutral-content/10">
-        <div className="mx-auto flex max-w-7xl flex-col gap-2 px-6 py-5 text-xs opacity-70 sm:flex-row sm:items-center sm:justify-between lg:px-8">
+        <div className="mx-auto flex max-w-7xl flex-col gap-2 px-6 py-5 text-xs text-white/50 sm:flex-row sm:items-center sm:justify-between lg:px-8">
           <p>
-            &copy; {currentYear} HelpingHands BD. Together, we make a difference.
+            &copy; {currentYear} NeighbourNest. Together, we make a difference.
           </p>
           <p>Made for communities, by the community.</p>
         </div>

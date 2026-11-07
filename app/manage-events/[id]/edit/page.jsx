@@ -16,11 +16,16 @@ export default function EditEventPage({ params }) {
  toast.success("Event updated");
  router.push("/manage-events");
  }
- if (!event) return <div className="skeleton mx-auto mt-10 h-96 max-w-2xl" />;
+ if (!event) return <div aria-label="Loading event form" className="skeleton mx-auto mt-14 h-96 max-w-2xl rounded-2xl" />;
  return (
- <div className="mx-auto max-w-2xl px-4 py-10">
- <h1 className="mb-6 text-3xl font-bold">Update Event</h1>
- <EventForm initial={event} onSubmit={updateEvent} buttonText="Save Changes" />
- </div>
+ <section className="page-shell px-5 py-14 sm:px-8">
+  <div className="mx-auto max-w-2xl">
+   <p className="section-kicker">Keep your neighbors in the loop</p>
+   <h1 className="mt-2 font-display text-4xl font-semibold">Update event</h1>
+   <div className="surface-card mt-8 p-5 sm:p-8">
+    <EventForm initial={event} onSubmit={updateEvent} buttonText="Save Changes" />
+   </div>
+  </div>
+ </section>
  );
 }
