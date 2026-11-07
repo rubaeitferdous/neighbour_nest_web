@@ -1,4 +1,4 @@
-import EventCard from "@/components/events/EventCard";
+import EventFilters from "@/components/events/EventFilters";
 import { getPublic } from "@/lib/api";
 import { Suspense } from "react";
 import Link from "next/link";
@@ -46,9 +46,7 @@ async function UpcomingEvents() {
  {events.length === 0 ? (
  <p className="rounded-2xl border border-dashed border-ink/20 bg-base-200 px-6 py-14 text-center text-ink/65">No upcoming events yet. Be the first to create one!</p>
  ) : (
- <div className="grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
- {events.map((e) => <EventCard key={e._id} event={e} />)}
- </div>
+ <EventFilters events={events} />
  )}
  </div>
  </section>

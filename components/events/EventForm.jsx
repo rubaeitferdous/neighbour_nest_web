@@ -1,8 +1,7 @@
 "use client";
 import { useState } from "react";
 import toast from "react-hot-toast";
-import { tomorrowString, validateEventForm } from "@/lib/validators";
-const TYPES = ["Cleanup", "Plantation", "Donation", "Blood Drive", "Education", "Health Camp"];
+import { EVENT_TYPES, tomorrowString, validateEventForm } from "@/lib/validators";
 export default function EventForm({ initial = {}, onSubmit, buttonText }) {
  const [busy, setBusy] = useState(false);
  async function handleSubmit(e) {
@@ -36,7 +35,7 @@ export default function EventForm({ initial = {}, onSubmit, buttonText }) {
   <select name="eventType" defaultValue={initial.eventType || ""}
   className="select select-bordered w-full">
   <option value="" disabled>Select event type</option>
-  {TYPES.map((t) => <option key={t}>{t}</option>)}
+  {EVENT_TYPES.map((t) => <option key={t}>{t}</option>)}
   </select>
  </label>
  <label className="block space-y-2">
